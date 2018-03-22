@@ -1,6 +1,21 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
 
+
+/**
+ *
+ * @type {timeoffsetPlugin}
+ *
+ * Mongoose plugin that replaces Date fields in the schema to two
+ * distinct fields that store both date and offset from gmt and
+ * produces a virtual function to set/get a full date with offset
+ * data.
+ *
+ * @param options - an array of path names to convert (optional, if none is
+ *                  given then all Date types are replaced)
+ *
+ * See test.js for example usage
+ */
 module.exports = exports = function timeoffsetPlugin(schema, options = {}) {
     options = {paths: [], ...options};
     const paths = findDatePaths(schema, options);
