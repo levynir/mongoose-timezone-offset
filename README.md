@@ -1,12 +1,13 @@
 INSTALL
 =======
-```
+```bash
 npm install something
 ```
 
 USE
 ===
-```
+```javascript
+//In your schema definition
 const plugin = require('mongoose-timezone-offset');
 
 const SomeSchema = new mongoose.Schema({
@@ -18,9 +19,10 @@ const SomeSchema = new mongoose.Schema({
 });
 SomeSchema.plugin(plugin);
 const SomeModel = mongoose.model('SomeSchema', SomeSchema );
-
-...
+```
+```javascript
 //In your application
+const moment = require('moment-timezone'); //<-- use moment-timezone for clarity
 const now = moment().tz('America/Los_Angeles'); //<-- insert client's timezone here
 data = new SomeModel( {when: {created: now} } );
 return data.save()
@@ -30,3 +32,7 @@ return data.save()
         console.log(`Local difference from UTC was ${saved.when.created_offset}`);
     });
 ```
+
+License
+=======
+MIT Licence (c) 2018 by Nir Levy @ Dayzz Live Well Ltd.

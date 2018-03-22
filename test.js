@@ -160,7 +160,7 @@ describe('Tests mongoose-timezone-offset', function() {
     });
     SomeModel = Offset;
     describe('#example script check', function() {
-        it('run example', async function() {
+        it('run example in LA', async function() {
             const now = moment().tz('America/Los_Angeles');
             data = new SomeModel( {when: {created: now} } );
             return data.save()
@@ -170,7 +170,7 @@ describe('Tests mongoose-timezone-offset', function() {
                     console.log(`Local difference from UTC was ${saved.when.created_offset}`);
                 });
         });
-        it('run example again', async function() {
+        it('run example in local zone', async function() {
             const now = moment();
             data = new SomeModel( {when: {created: now} } );
             return data.save()
