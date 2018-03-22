@@ -43,7 +43,6 @@ module.exports = exports = function timeoffsetPlugin(schema, options = {}) {
     schema.set('toObject', {virtuals: true});
 };
 
-
 function _findDatePaths(schema, options) {
     const hasOptions = !!options.paths.length;
     return Object.keys(schema.paths)

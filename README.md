@@ -4,6 +4,14 @@ Install
 npm install --save git+https://github.com/levynir/mongoose-timezone-offset.git
 ```
 
+Requires
+========
+1. node 8.x
+2. mongoose 5.x 
+(If you need to get this to work on mongoose 4.x you should fork and change the mongoose in package.json to your version. This is becuase Date types definition changed from 4.x to 5.x.)
+
+
+
 Use
 ===
 ```javascript
