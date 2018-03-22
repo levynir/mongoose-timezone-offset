@@ -1,10 +1,10 @@
-INSTALL
+Install
 =======
-```bash
-npm install something
+```shell
+npm install --save git+https://github.com/levynir/mongoose-timezone-offset.git
 ```
 
-USE
+Use
 ===
 ```javascript
 //In your schema definition
@@ -22,7 +22,7 @@ const SomeModel = mongoose.model('SomeSchema', SomeSchema );
 ```
 ```javascript
 //In your application
-const moment = require('moment-timezone'); //<-- use moment-timezone for clarity
+const moment = require('moment-timezone');      //<-- use moment-timezone for clarity
 const now = moment().tz('America/Los_Angeles'); //<-- insert client's timezone here
 data = new SomeModel( {when: {created: now} } );
 return data.save()
@@ -36,3 +36,7 @@ return data.save()
 License
 =======
 MIT Licence (c) 2018 by Nir Levy @ Dayzz Live Well Ltd.
+
+Inspiration
+===========
+This module was inspired by the mongoose-timezone plugin from https://github.com/rodrigogs/mongoose-timezone
