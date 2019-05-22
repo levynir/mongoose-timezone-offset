@@ -14,7 +14,11 @@ const moment = require('moment');
  * @param options - an array of path names to convert (optional,
  *                  if none is given then all Date types are
  *                  replaced)
- *
+ * 
+ * Please note: 
+ * If you create an object with an non existing offset, moment().offset(17). 
+ * Calling moment.offset() it will return the invalid offset.
+ * 
  * See test.js for example usage
  */
 module.exports = exports = function timeoffsetPlugin(schema, options = {}) {
@@ -35,8 +39,10 @@ module.exports = exports = function timeoffsetPlugin(schema, options = {}) {
             })
             .set(function (value) {
                 if (!value) return;
+                const momentOffset = moment(value).utcOffset();
+                const offset = _isValidMinute(momentOffset) ?  momentOffset / 60 : momentOffset;
                 _set(this,path_utc,moment(value).utc());
-                _set(this,path_offset,moment(value).utcOffset() / 60);
+                _set(this,path_offset,offset);
             });
     });
     schema.set('toJSON', {virtuals: true});
@@ -49,6 +55,20 @@ function _findDatePaths(schema, options) {
         .filter((path) => {
             return hasOptions ? (options.paths.indexOf(path) !== -1) : (schema.paths[path] instanceof mongoose.Schema.Types.Date);
         });
+}
+
+/**
+ * Attempt to determine whether moment.offset() is valid
+ */
+function _isValidMinute(value) {
+    if (value % 60 === 0) {
+        return true;
+    }
+    const min = value / 60;
+    if (min < 16 && min > -16 && value % 60 === 30){
+        return true;
+    }
+    return false;
 }
 
 /**

@@ -158,6 +158,42 @@ describe('Tests mongoose-timezone-offset', function() {
                 });
         });
     });
+
+    describe('edge cases', function() {
+        it('Should not break with bad offset of 17', async function() {
+            const now = moment.utc().utcOffset(17);
+            data = new SomeModel( {when: {created: now} } );
+            return data.save()
+                .then( saved => {
+                    saved.when.created_offset.should.equal(17);
+                });
+        });
+        it('Should not break with bad offset of 24', async function() {
+            const now = moment.utc().utcOffset(24);
+            data = new SomeModel( {when: {created: now} } );
+            return data.save()
+                .then( saved => {
+                    saved.when.created_offset.should.equal(24);
+                });
+        });
+        it('Should not break with good offset of 510', async function() {
+            const now = moment.utc().utcOffset(510);
+            data = new SomeModel( {when: {created: now} } );
+            return data.save()
+                .then( saved => {
+                    saved.when.created_offset.should.equal(8.5);
+                });
+        });
+        it('Should not break with good offset of 8.5', async function() {
+            const now = moment.utc().utcOffset(8.5);
+            data = new SomeModel( {when: {created: now} } );
+            return data.save()
+                .then( saved => {
+                    saved.when.created_offset.should.equal(8.5);
+                });
+        });
+    });
+
     SomeModel = Offset;
     describe('#example script check', function() {
         it('run example in LA', async function() {
@@ -182,4 +218,3 @@ describe('Tests mongoose-timezone-offset', function() {
         });
     });
 });
-
