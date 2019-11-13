@@ -1,6 +1,6 @@
 {
   "name": "mongoose-timezone-offset",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "mongoose plugin to store timezone offset in mongodb",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/levynir/mongoose-timezone-offset#readme",
   "dependencies": {
     "moment": "^2.21.0",
-    "mongoose": "^5.7.5"
+    "mongoose": "^5.5.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
