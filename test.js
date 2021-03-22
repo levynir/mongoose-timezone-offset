@@ -160,8 +160,8 @@ describe('Tests mongoose-timezone-offset', function() {
     });
 
     describe('edge cases', function() {
-        it('Should not break with bad offset of 17', async function() {
-            const now = moment.utc().utcOffset(17);
+        it('Should not break with bad offset of 14', async function() {
+            const now = moment.utc().utcOffset(14);
             data = new SomeModel( {when: {created: now} } );
             return data.save()
                 .then( saved => {
