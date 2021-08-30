@@ -33,7 +33,7 @@ describe('Tests mongoose-timezone-offset', function() {
 
     //After all tests are finished drop database and close connection
     after(function(done){
-        //mongoose.connection.close(done);
+        mongoose.connection.close(done);
         mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done));
     });
 
