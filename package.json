@@ -24,7 +24,7 @@
   "homepage": "https://github.com/levynir/mongoose-timezone-offset#readme",
   "dependencies": {
     "moment": "^2.21.0",
-    "mongoose": "^5.5.0"
+    "mongoose": "5.5.10"
   },
   "devDependencies": {
     "chai": "^4.1.2",
